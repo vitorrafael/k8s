@@ -1,8 +1,10 @@
 import app from "./server";
+import { connect } from "./infrastructure/database/mongodb";
 
 const PORT = process.env.PORT || 8080;
 
-(function init() {
+(async function init() {
+  await connect();
   const server = app.listen(PORT, () =>
     console.log(`Server listening on PORT ${PORT}`)
   );
