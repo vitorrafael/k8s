@@ -13,13 +13,15 @@ spec:
     spec:
       containers:
       - name: api-d
-        image: vitorrafael/k8s-api:v1
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+        image: vitorrafael/k8s-api:v5
         ports:
         - containerPort: 8080
+        env:
+          - name: MONGO_URL
+            valueFrom:
+              configMapKeyRef:
+                name: config
+                key: MONGO_URL
 ---
 apiVersion: v1
 kind: Service
